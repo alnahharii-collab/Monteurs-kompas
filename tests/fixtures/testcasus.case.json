@@ -1,0 +1,83 @@
+{
+  "case": {
+    "id": "testcasus",
+    "applianceId": "intergas-kombi-kompakt-hre-24-18-a",
+    "title": "Testcasus — geen echte diagnose",
+    "symptoms": ["Testsymptoom (alleen voor testen)"],
+    "errorCodes": ["T01"],
+    "startStepId": "vraag-1",
+    "steps": {
+      "vraag-1": {
+        "type": "question",
+        "id": "vraag-1",
+        "label": "Controle",
+        "prompt": "Testvraag: kies een antwoord om de flow te testen",
+        "instruction": "Dit is testinhoud. Er staat hier geen technische instructie.",
+        "options": [
+          { "label": "Ja", "next": "meting-1" },
+          { "label": "Nee", "next": "instructie-1" },
+          {
+            "label": "Test veiligheid",
+            "next": "instructie-1",
+            "safety": {
+              "category": "gas-leak",
+              "reason": "Testreden voor het STOP-scherm.",
+              "action": "Testactie: bevestig om de flow te testen.",
+              "sourceIds": ["testbron"]
+            }
+          }
+        ],
+        "help": { "how": "Testtekst voor 'Hoe controleer ik dit'.", "why": "Testtekst voor 'Waarom'." },
+        "sourceIds": ["testbron"]
+      },
+      "meting-1": {
+        "type": "measurement",
+        "id": "meting-1",
+        "label": "Meting",
+        "prompt": "Testmeting: voer een waarde in",
+        "quantity": "Testgrootheid",
+        "unit": "bar",
+        "range": { "min": 1, "max": 2, "sourceId": "testbron" },
+        "next": { "inRange": "uitkomst-1", "outOfRange": "stop-1", "unknown": "TODO" },
+        "sourceIds": ["testbron"]
+      },
+      "instructie-1": {
+        "type": "instruction",
+        "id": "instructie-1",
+        "label": "Handeling",
+        "prompt": "Testhandeling: tik op Gedaan",
+        "next": "meting-2",
+        "sourceIds": []
+      },
+      "meting-2": {
+        "type": "measurement",
+        "id": "meting-2",
+        "label": "Meting",
+        "prompt": "Testmeting zonder bereik",
+        "quantity": "Testgrootheid",
+        "unit": "°C",
+        "next": { "inRange": "uitkomst-1", "outOfRange": "uitkomst-1", "unknown": "uitkomst-1" },
+        "sourceIds": []
+      },
+      "uitkomst-1": {
+        "type": "outcome",
+        "id": "uitkomst-1",
+        "cause": "Testoorzaak",
+        "action": "Testactie",
+        "verification": "TODO",
+        "sourceIds": ["testbron"]
+      },
+      "stop-1": {
+        "type": "safety-stop",
+        "id": "stop-1",
+        "category": "flue-gas",
+        "reason": "Testreden voor een veiligheidsstop-stap.",
+        "action": "Testactie bij veiligheidsstop.",
+        "sourceIds": ["testbron"]
+      }
+    }
+  },
+  "sources": [
+    { "id": "testbron", "type": "general", "title": "Testbron — geen echte bron" }
+  ]
+}

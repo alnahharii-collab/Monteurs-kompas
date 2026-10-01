@@ -1,0 +1,36 @@
+{
+  "name": "monteur-kompas",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "content": "node scripts/build-content.mjs",
+    "predev": "npm run content",
+    "dev": "next dev",
+    "prebuild": "npm run content && vitest run",
+    "build": "next build",
+    "start": "next start",
+    "pretypecheck": "npm run content",
+    "typecheck": "tsc --noEmit",
+    "pretest": "npm run content",
+    "test": "vitest run",
+    "screenshots": "playwright test"
+  },
+  "dependencies": {
+    "geist": "^1.7.2",
+    "lucide-react": "^1.49.0",
+    "next": "^16.3.8",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.56.1",
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/node": "^26.6.3",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^5.9.3",
+    "vitest": "^5.0.3"
+  }
+}
