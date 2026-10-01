@@ -1,0 +1,6 @@
+node_modules
+dist
+screenshots/tmp
+screenshots/360-*.png
+screenshots/430-*.png
+screenshots/metrics.json
